@@ -9,11 +9,14 @@ class Solution:
 
         def matches_needle(start: int) -> bool:
             end: int = start + needle_len
-            return haystack[start:end] == needle 
+            for j in range(start:end):
+                if haystack[j] != needle[j-start]:
+                    return False 
+            return True 
 
         first_letter: str = needle[0]
         
-        for i in range(len(haystack)):
+        for i in range(len(haystack)-needle_len+1):
             if haystack[i] == first_letter:
                 match : bool = matches_needle(i)
                 if match:
